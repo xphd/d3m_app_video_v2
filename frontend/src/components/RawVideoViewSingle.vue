@@ -1,6 +1,6 @@
 <template>
 <div>
-    <p>{{ name }}</p>
+    <p style="text-align: left">Filename: {{ name }}</p>
     <div :id="id" v-show="playable">    
         <videoPlayer class="vjs-custom-skin"
                       ref="videoPlayer"
