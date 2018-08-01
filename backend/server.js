@@ -45,7 +45,7 @@ io.on("connection", socket => {
     console.log("requestVideos activated");
     // get the list of links to Video file in this server
     var videos = [];
-    var index = 0
+    var index = 0;
 
     fs.readdirSync(STATIC_VIDEO_FOLDER_PATH).forEach(subFolderPath => {
       var path = STATIC_VIDEO_FOLDER_PATH + subFolderPath;
@@ -54,17 +54,16 @@ io.on("connection", socket => {
         fs.readdirSync(path).forEach(file => {
           var link = BASE_URL + subFolderPath + "/" + file;
           var video = {
-            id : index,
-            link:link
+            id: index,
+            link: link
           };
-          videos.push(video)
+          videos.push(video);
           index++;
         });
       } else {
         console.log(path + " is not a directory");
       }
     });
-    videos[0];
 
     // emit "returnVideos" to the frontend with Videos
     socket.emit("responseVideos", videos);

@@ -21,8 +21,13 @@
                 <button @click="setPage()" class="btn btn-primary btn-sm">Jump!</button>
             </div>
             <div class="col-xs-4">
-                Videos Per Page
-                <input type="number" min="1" :max="numOfVideos" v-model.number="itemsPerPage">
+                Audios Per Page
+                <select v-model.number="itemsPerPage">
+                  <option value="5">5</option>
+                  <option value="10">10</option>  
+                  <option value="25">25</option>                  
+                  <option value="50">50</option>                  
+                </select>
                 <button @click="setItemsPerPage()" class="btn btn-success btn-sm">Go!</button>
             </div>
             <div class="col-xs-2"></div>
@@ -107,8 +112,16 @@ export default {
 
 <style scoped>
 input {
-  text-align: right;
+  text-align: center;
   border: 1px solid gray;
+  height: 25px;
   width: 50px;
+}
+
+select {
+  border: 1px solid gray;
+  height: 25px;
+  width: 50px;
+  appearance: menulist;
 }
 </style>
