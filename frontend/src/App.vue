@@ -1,16 +1,16 @@
 <template>
 <div id="app">
     <h1>App Root</h1>
-    <RawAudioView></RawAudioView>
+    <RawVideoView></RawVideoView>
 </div>
 </template>
 
 <script>
-import RawAudioView from "./components/RawAudioView.vue";
+import RawVideoView from "./components/RawVideoView.vue";
 export default {
   name: "app",
   components: {
-    RawAudioView
+    RawVideoView
   }
 };
 </script>

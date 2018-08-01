@@ -40,11 +40,12 @@ var io = socketIO(server);
 io.on("connection", socket => {
   console.log("Server: get Client");
 
-  // listen to "getVideoLinks" emmited from frontend
-  socket.on("requestVideoLinks", () => {
-    console.log("requestVideoLinks activated");
+  // listen to "getVideos" emmited from frontend
+  socket.on("requestVideos", () => {
+    console.log("requestVideos activated");
     // get the list of links to Video file in this server
-    var videoLinks = [];
+    var videos = [];
+    var index = 0
 
     fs.readdirSync(STATIC_VIDEO_FOLDER_PATH).forEach(subFolderPath => {
       var path = STATIC_VIDEO_FOLDER_PATH + subFolderPath;
@@ -52,17 +53,22 @@ io.on("connection", socket => {
       if (stats.isDirectory(subFolderPath)) {
         fs.readdirSync(path).forEach(file => {
           var link = BASE_URL + subFolderPath + "/" + file;
-          videoLinks.push(link);
+          var video = {
+            id : index,
+            link:link
+          };
+          videos.push(video)
+          index++;
         });
       } else {
         console.log(path + " is not a directory");
       }
     });
-    videoLinks[0];
+    videos[0];
 
-    // emit "returnVideoLinks" to the frontend with VideoLinks
-    socket.emit("responseVideoLinks", videoLinks);
-    console.log("responseVideoLinks activated");
+    // emit "returnVideos" to the frontend with Videos
+    socket.emit("responseVideos", videos);
+    console.log("responseVideos activated");
   });
 });
 
