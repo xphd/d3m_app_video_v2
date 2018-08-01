@@ -21,7 +21,7 @@
                 <button @click="setPage()" class="btn btn-primary btn-sm">Jump!</button>
             </div>
             <div class="col-xs-4">
-                Audios Per Page
+                Videos Per Page
                 <select v-model.number="itemsPerPage">
                   <option value="5">5</option>
                   <option value="10">10</option>  

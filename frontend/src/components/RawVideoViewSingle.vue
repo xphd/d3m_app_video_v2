@@ -1,6 +1,7 @@
 <template>
 <div>
-    <p style="text-align: left">Filename: {{ name }}</p>
+    <br>
+    <p>Filename: {{ name }}</p>
     <div :id="id" v-show="playable">    
         <videoPlayer class="vjs-custom-skin"
                       ref="videoPlayer"
@@ -21,8 +22,7 @@
     </div>
     <div v-show="!playable">
       Video is not playable!
-    </div>
-    <hr>
+    </div>    
 </div>
 </template>
 
@@ -124,4 +124,7 @@ export default {
 </script>
 
 <style scoped>
+p{
+  text-align: left
+}
 </style>
