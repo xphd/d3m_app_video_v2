@@ -1,8 +1,9 @@
 <template>
 <div>
-    <br>
-    <p>Filename: <strong>{{ name }}</strong></p>    
-    <div :id="id" v-show="playable">    
+    <br>     
+    <div :id="id" v-show="playable">        
+        <span class="name">Filename: <strong>{{ name }}</strong></span> 
+        <span>Duration: <strong>{{ duration }}</strong> seconds</span>
         <videoPlayer class="vjs-custom-skin"
                       ref="videoPlayer"
                       :options="playerOptions"
@@ -18,10 +19,11 @@
                       @canplaythrough="onPlayerCanplaythrough($event)"
                       @ready="playerReadied"
                       @statechanged="playerStateChanged($event)">
-        </videoPlayer>
+        </videoPlayer>        
     </div>
-    <div v-show="!playable">
-      <p>Sorry, this video is not playable.</p>        
+    <div v-show="!playable">   
+      <span class="name">Filename: <strong>{{ name }}</strong></span>   
+      <span>Sorry, this video is not playable. </span>             
     </div>    
 </div>
 </template>
@@ -41,6 +43,7 @@ export default {
       id: "video" + this.video.id,
       link: this.video.link,
       name: "",
+      duration: 0,
 
       // videojs options
       playerOptions: {
@@ -104,6 +107,8 @@ export default {
     onPlayerCanplay(player) {
       // console.log("player Canplay!", player);
       this.playable = true;
+      var duration = this.$refs.videoPlayer.$refs.video.duration;
+      this.duration = Math.round(duration * 100) / 100;
       // console.log(this.playable);
     },
     onPlayerCanplaythrough(player) {
@@ -125,7 +130,7 @@ export default {
 </script>
 
 <style scoped>
-p {
-  text-align: left;
+.name {
+  float: left;
 }
 </style>
