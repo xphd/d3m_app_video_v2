@@ -1,7 +1,7 @@
 <template>
 <div>
     <br>
-    <p>Filename: {{ name }}</p>
+    <p>Filename: <strong>{{ name }}</strong></p>    
     <div :id="id" v-show="playable">    
         <videoPlayer class="vjs-custom-skin"
                       ref="videoPlayer"
@@ -20,8 +20,8 @@
                       @statechanged="playerStateChanged($event)">
         </videoPlayer>
     </div>
-    <div v-show="!playable" >
-      <p>Video is not playable!</p>      
+    <div v-show="!playable">
+      <p>Sorry, this video is not playable.</p>        
     </div>    
 </div>
 </template>
@@ -36,15 +36,16 @@ export default {
   data: function() {
     return {
       playable: false,
+
       // pass the video info
       id: "video" + this.video.id,
       link: this.video.link,
       name: "",
-      message: "Hi from Vue",
+
       // videojs options
       playerOptions: {
         height: "360",
-        autoplay: true,
+        autoplay: false,
         muted: true,
         language: "en",
         playbackRates: [0.7, 1.0, 1.5, 2.0],
@@ -69,10 +70,10 @@ export default {
   },
   mounted() {
     // console.log('this is current player instance object', this.player)
-    setTimeout(() => {
-      // console.log("dynamic change options", this.player);
-      this.player.muted(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   // console.log("dynamic change options", this.player);
+    //   this.player.muted(false);
+    // }, 2000);
     // get the name of audio file, that is the last part of link
     var temp = this.link.split("/");
     this.name = temp[temp.length - 1];
@@ -116,7 +117,7 @@ export default {
     playerReadied(player) {
       // seek to 10s
       // console.log("example player 1 readied");
-      player.currentTime(10);
+      // player.currentTime(10);
       // console.log('example 01: the player is readied', player)
     }
   }
