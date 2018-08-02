@@ -20,8 +20,8 @@
                       @statechanged="playerStateChanged($event)">
         </videoPlayer>
     </div>
-    <div v-show="!playable">
-      Video is not playable!
+    <div v-show="!playable" >
+      <p>Video is not playable!</p>      
     </div>    
 </div>
 </template>
@@ -124,7 +124,7 @@ export default {
 </script>
 
 <style scoped>
-p{
-  text-align: left
+p {
+  text-align: left;
 }
 </style>

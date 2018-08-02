@@ -5,6 +5,7 @@
             <td><strong>{{ props.item.id }}</strong></td>
             <td>
                 <RawVideoViewSingle :video='props.item' :key="props.item.id"></RawVideoViewSingle>
+                <hr>   
             </td>
         </template>
     </v-data-table>
